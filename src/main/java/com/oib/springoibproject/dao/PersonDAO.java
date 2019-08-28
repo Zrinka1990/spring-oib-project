@@ -11,5 +11,5 @@ public interface PersonDAO {
 
     Person getByOib(String oib);
 
-    void create(String oib, PersonCommand command);
+    void createOrUpdate(String oib, PersonCommand command);
 }

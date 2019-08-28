@@ -27,9 +27,9 @@ public class PersonController {
         return personJDBCTemplate.getByOib(oib);
     }
 
-    @PostMapping("/{oib}")
-    public String createPerson(@PathVariable String oib, @RequestBody PersonCommand personCommand) {
-        personJDBCTemplate.create(oib, personCommand);
+    @PutMapping("/{oib}")
+    public String createOrUpdatePerson(@PathVariable String oib, @RequestBody PersonCommand personCommand) {
+        personJDBCTemplate.createOrUpdate(oib, personCommand);
         return "Person updated";
     }
 }

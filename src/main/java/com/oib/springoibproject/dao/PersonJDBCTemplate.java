@@ -5,15 +5,14 @@ import com.oib.springoibproject.commands.PersonCommandToPerson;
 import com.oib.springoibproject.exceptions.NotFoundException;
 import com.oib.springoibproject.mapper.PersonMapper;
 import com.oib.springoibproject.model.Person;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
@@ -45,11 +44,20 @@ public class PersonJDBCTemplate implements PersonDAO {
 
     @Transactional
     @Override
-    public void create(@PathVariable String oib, PersonCommand command) {
+    public void createOrUpdate(String oib, PersonCommand command) {
         Person person = personConverter.convert(command);
         String firstName = person.getFirstName();
         String lastName = person.getLastName();
-        jdbcTemplate.update("insert into person (oib, firstname, lastName) values (?, ?, ?)",
-                oib, firstName, lastName);
+        String sql = "SELECT count(*) FROM person WHERE oib = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, new Object[] { oib }, Integer.class);
+        assert count != null;
+        if (count > 0) {
+            jdbcTemplate.update("UPDATE Person SET firstName = ?, lastName = ?" +
+                    " WHERE oib = ?", firstName, lastName, oib);
+        } else {
+            jdbcTemplate.update("insert into person (oib, firstname, lastName) values (?, ?, ?)",
+                    oib, firstName, lastName);
+        }
     }
+
 }
