@@ -1,5 +1,6 @@
 package com.oib.springoibproject.dao;
 
+import com.oib.springoibproject.exceptions.NotFoundException;
 import com.oib.springoibproject.mapper.PersonMapper;
 import com.oib.springoibproject.model.Person;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -30,7 +31,7 @@ public class PersonJDBCTemplate implements PersonDAO {
         try {
             return jdbcTemplate.queryForObject(sqlQuery, new Object[]{oib}, new PersonMapper());
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            throw new NotFoundException("Person with oib " + oib + " not found!");
         }
     }
 }

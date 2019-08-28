@@ -1,4 +1,4 @@
-package com.oib.springoibproject.controller;
+package com.oib.springoibproject.controllers;
 
 import com.oib.springoibproject.dao.PersonJDBCTemplate;
 import com.oib.springoibproject.model.Person;
