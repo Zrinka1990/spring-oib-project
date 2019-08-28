@@ -2,9 +2,7 @@ package com.oib.springoibproject.controller;
 
 import com.oib.springoibproject.dao.PersonJDBCTemplate;
 import com.oib.springoibproject.model.Person;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,10 @@ public class PersonController {
     @GetMapping
     public List<Person> getAllPersons() {
         return personJDBCTemplate.getAllPersons();
+    }
+
+    @GetMapping("/{oib}")
+    public Person getPersonByOib(@PathVariable String oib) {
+        return personJDBCTemplate.getByOib(oib);
     }
 }

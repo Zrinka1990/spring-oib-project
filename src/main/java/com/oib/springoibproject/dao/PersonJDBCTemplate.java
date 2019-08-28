@@ -2,6 +2,7 @@ package com.oib.springoibproject.dao;
 
 import com.oib.springoibproject.mapper.PersonMapper;
 import com.oib.springoibproject.model.Person;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,16 @@ public class PersonJDBCTemplate implements PersonDAO {
 
     @Override
     public List<Person> getAllPersons() {
-        List<Person> persons = jdbcTemplate.query("select * from person", new PersonMapper());
-        return persons;
+        return jdbcTemplate.query("select * from person", new PersonMapper());
     }
 
+    @Override
+    public Person getByOib(String oib) {
+        String sqlQuery = "select * from person where oib = ?";
+        try {
+            return jdbcTemplate.queryForObject(sqlQuery, new Object[]{oib}, new PersonMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 }
