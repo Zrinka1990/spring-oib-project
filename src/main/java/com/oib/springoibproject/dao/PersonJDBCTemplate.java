@@ -17,12 +17,10 @@ import java.util.List;
 
 @Service
 public class PersonJDBCTemplate implements PersonDAO {
-    private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
     private PersonCommandToPerson personConverter;
 
-    public PersonJDBCTemplate(DataSource dataSource, JdbcTemplate jdbcTemplate, PersonCommandToPerson personConverter) {
-        this.dataSource = dataSource;
+    public PersonJDBCTemplate(DataSource dataSource, PersonCommandToPerson personConverter) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.personConverter = personConverter;
     }
