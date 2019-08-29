@@ -2,10 +2,13 @@ package com.oib.springoibproject.commands;
 
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @NoArgsConstructor
 public class PersonCommand {
-    private String oib;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
 
     public String getFirstName() {
@@ -22,13 +25,5 @@ public class PersonCommand {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getOib() {
-        return oib;
-    }
-
-    public void setOib(String oib) {
-        this.oib = oib;
     }
 }

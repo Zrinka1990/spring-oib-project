@@ -1,9 +1,9 @@
 package com.oib.springoibproject.controllers;
 
 import com.oib.springoibproject.commands.PersonCommand;
-import com.oib.springoibproject.commands.PersonCommandToPerson;
 import com.oib.springoibproject.dao.PersonJDBCTemplate;
 import com.oib.springoibproject.model.Person;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class PersonController {
     }
 
     @PutMapping("/{oib}")
-    public String createOrUpdatePerson(@PathVariable String oib, @RequestBody PersonCommand personCommand) {
+    public String createOrUpdatePerson(@PathVariable String oib, @Validated @RequestBody PersonCommand personCommand) {
         personJDBCTemplate.createOrUpdate(oib, personCommand);
         return "Person updated";
     }
