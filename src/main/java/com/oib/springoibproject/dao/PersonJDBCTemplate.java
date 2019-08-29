@@ -38,7 +38,7 @@ public class PersonJDBCTemplate implements PersonDAO {
         try {
             return jdbcTemplate.queryForObject(sqlQuery, new Object[]{oib}, new PersonMapper());
         } catch (EmptyResultDataAccessException e) {
-            throw new NotFoundException("404: Person with oib " + oib + " not found!");
+            throw new NotFoundException("Person with the oib " + oib + " not found!");
         }
     }
 
