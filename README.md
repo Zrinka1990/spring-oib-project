@@ -1,6 +1,6 @@
 # Spring OIB Project
-# Technology stack:\
-Spring Boot;
+# Technology stack:
+Spring Boot;\
 PostgreSQL database;
 # Test the app
 create a postgres database and start PostgreSQL server (-D daabaseName);\
