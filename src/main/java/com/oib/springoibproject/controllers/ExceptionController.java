@@ -15,4 +15,9 @@ public class ExceptionController {
     public String handleNotFound(NotFoundException e) {
         return e.getMessage();
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    public String handleBadRequest(IllegalArgumentException e) {return e.getMessage();}
 }

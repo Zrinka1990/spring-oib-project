@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PersonCommandToPerson implements Converter<PersonCommand, Person> {
-    @Nullable
+   @Nullable
     @Override
     public Person convert(PersonCommand personCommand) {
         if (personCommand == null) {

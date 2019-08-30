@@ -6,7 +6,6 @@ import com.oib.springoibproject.model.Person;
 import java.util.List;
 
 public interface PersonDAO {
-
     List<Person> getAll();
 
     Person getByOib(String oib);

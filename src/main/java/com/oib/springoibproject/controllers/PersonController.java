@@ -28,9 +28,10 @@ public class PersonController {
     }
 
     @PutMapping("/{oib}")
-    public String createOrUpdatePerson(@PathVariable String oib, @Validated @RequestBody PersonCommand personCommand) {
+    public Person createOrUpdatePerson(@PathVariable String oib,
+                                       @Validated @RequestBody PersonCommand personCommand) {
         personJDBCTemplate.createOrUpdate(oib, personCommand);
-        return "Person updated";
+        return personJDBCTemplate.getByOib(oib);
     }
 }
 

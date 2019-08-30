@@ -1,7 +1,7 @@
 CREATE TABLE person
 (
-    oib varchar(11) NOT NULL,
-    firstName varchar(50) NOT NULL,
-    lastName varchar(50) DEFAULT NULL,
+    oib VARCHAR(11) NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) DEFAULT NULL,
     PRIMARY KEY (oib)
 );

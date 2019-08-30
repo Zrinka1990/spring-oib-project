@@ -9,13 +9,13 @@ class PersonTest {
     private Person person;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         person = new Person();
     }
 
     @Test
     void getOib() {
-        String oibValue = "xxxxxxxxxxx";
+        String oibValue = "12312312312";
         person.setOib(oibValue);
         assertEquals(oibValue, person.getOib());
     }
@@ -34,4 +34,3 @@ class PersonTest {
         assertEquals(lastNameValue, person.getLastName());
     }
 }
-
